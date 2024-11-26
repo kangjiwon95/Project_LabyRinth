@@ -15,15 +15,15 @@ public class StartSceneManager : MonoBehaviour
 
     [Header("Setting UI Button")]
     [SerializeField]
-    private Button setting_UI_Off_Button;
+    private Button settingPanel_Off_Button;
 
     [Header("GameQuit Button")]
     [SerializeField]
-    private Button gameQuit_Yes_Button;
+    private Button QuitPanel_Yes_Button;
     [SerializeField]
-    private Button gameQuit_No_Button;
+    private Button QuitPanel_No_Button;
     [SerializeField]
-    private Button gameQuit_UI_offButton;
+    private Button QuitPanel_UI_offButton;
 
     [Header("UI Object")]
     [SerializeField]
@@ -41,12 +41,12 @@ public class StartSceneManager : MonoBehaviour
         gameQuitButton.onClick.AddListener(() => GameQuitButton());
 
         // 게임 셋팅 UI 버튼
-        setting_UI_Off_Button.onClick.AddListener(() => Setting_UiOff_Button());
+        settingPanel_Off_Button.onClick.AddListener(() => Setting_UiOff_Button());
 
         // 게임 종료 Yes 버튼
-        gameQuit_Yes_Button.onClick.AddListener(() => GameQuit_Yes_Button());
-        gameQuit_No_Button.onClick.AddListener(() => GameQuit_No_Button());
-        gameQuit_UI_offButton.onClick.AddListener(() => GameQuit_No_Button());
+        QuitPanel_Yes_Button.onClick.AddListener(() => GameQuit_Yes_Button());
+        QuitPanel_No_Button.onClick.AddListener(() => GameQuit_No_Button());
+        QuitPanel_UI_offButton.onClick.AddListener(() => GameQuit_No_Button());
     }
 
     void Update()
@@ -60,7 +60,7 @@ public class StartSceneManager : MonoBehaviour
     #region Button
     private void GameStartButton()    // 게임 시작
     {
-        
+        LoadingManager.instance.StartCoroutine(LoadingManager.instance.FadeOut("01.CreatPlayerScene"));
     }
 
     #region GameSetting UI Button(게임 셋팅 UI 버튼)
