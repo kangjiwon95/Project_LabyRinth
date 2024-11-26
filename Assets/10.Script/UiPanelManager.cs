@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopUpmanager : MonoBehaviour
+public class UiPanelManager : MonoBehaviour
 {
-    public static PopUpmanager Instance;
+    public static UiPanelManager Instance;
 
     // 스택을 사용해 활성화된 패널을 관리
     private Stack<GameObject> activePanels = new Stack<GameObject>();

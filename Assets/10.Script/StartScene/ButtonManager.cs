@@ -13,6 +13,10 @@ public class StartSceneManager : MonoBehaviour
     [SerializeField]
     private Button gameQuitButton;    // 게임 종료 버튼
 
+    [Header("Setting UI Button")]
+    [SerializeField]
+    private Button setting_UI_Off_Button;
+
     [Header("GameQuit Button")]
     [SerializeField]
     private Button gameQuit_Yes_Button;
@@ -36,6 +40,9 @@ public class StartSceneManager : MonoBehaviour
         // 게임 종료 버튼
         gameQuitButton.onClick.AddListener(() => GameQuitButton());
 
+        // 게임 셋팅 UI 버튼
+        setting_UI_Off_Button.onClick.AddListener(() => Setting_UiOff_Button());
+
         // 게임 종료 Yes 버튼
         gameQuit_Yes_Button.onClick.AddListener(() => GameQuit_Yes_Button());
         gameQuit_No_Button.onClick.AddListener(() => GameQuit_No_Button());
@@ -46,7 +53,7 @@ public class StartSceneManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
-            PopUpmanager.Instance.CloseLastOpenedPanel();
+            UiPanelManager.Instance.CloseLastOpenedPanel();
         }
     }
 
@@ -56,17 +63,23 @@ public class StartSceneManager : MonoBehaviour
         
     }
 
+    #region GameSetting UI Button(게임 셋팅 UI 버튼)
     private void SettingButton()    // 게임 셋팅
     {
-
+        UiPanelManager.Instance.OpenPanel(settingObj);
     }
 
+    private void Setting_UiOff_Button()
+    {
+        UiPanelManager.Instance.ClosePanel(settingObj);
+    }
+    #endregion
+
+    #region GameQuit UI Button(게임 종료 UI 버튼)
     private void GameQuitButton()    // 게임 종료
     {
-        PopUpmanager.Instance.OpenPanel(quitObj);
+        UiPanelManager.Instance.OpenPanel(quitObj);
     }
-
-    #region GameQuit UI Button(게임 종료 UI창 버튼)
     private void GameQuit_Yes_Button()     // 게임 종료 UI Yes 버튼
     {
         #if UNITY_EDITOR
@@ -76,7 +89,7 @@ public class StartSceneManager : MonoBehaviour
     }
     private void GameQuit_No_Button()      // 게임 종료 UI No 버튼
     {
-        PopUpmanager.Instance.ClosePanel(quitObj);
+        UiPanelManager.Instance.ClosePanel(quitObj);
     }
     #endregion
     #endregion
